@@ -20,6 +20,12 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+//    @CrossOrigin
+//    @GetMapping
+//    public List<User> getUsersWithLocationCount() {
+//        return userService.getAllUsersWithLocationCount();
+//    }
+
     @CrossOrigin
     @PostMapping
     public User createUser(@RequestBody User user) {

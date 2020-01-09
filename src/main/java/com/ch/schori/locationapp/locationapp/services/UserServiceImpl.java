@@ -24,6 +24,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+//    public List<User> getAllUsersWithLocationCount() {
+//        return userRepository.getUsersWithLocationCount();
+//    }
+
     public LoginForm login(User user) {
         try {
             User fetchedUser = userRepository.getUserByUsername(user.getUsername());
