@@ -5,10 +5,13 @@ import com.ch.schori.locationapp.locationapp.repos.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 @Service
 public class LocationServiceImpl implements LocationService {
+
+    private static String UPLOADED_FOLDER = "P:\\Java Projects\\locationapp\\src\\main\\java\\com\\ch\\schori\\locationapp\\locationapp\\images\\";
 
     @Autowired
     private LocationRepository locationRepository;
@@ -48,6 +51,17 @@ public class LocationServiceImpl implements LocationService {
     }
 
     public void deleteLocationSave(Long user_id, Long location_id) {
-        locationRepository.deleteLocationSave(user_id, location_id);
+        Location loc = locationRepository.getOne(location_id);
+        String imagename = loc.getImagename();
+        String filePath = UPLOADED_FOLDER + imagename;
+        try {
+            locationRepository.deleteLocationSave(user_id, location_id);
+            File file = new File(filePath);
+            if (!file.delete()) {
+                System.out.println("File: " + imagename + ". Delete failed!");
+            }
+        } catch (Exception e) {
+            // Nothing happens
+        }
     }
 }
