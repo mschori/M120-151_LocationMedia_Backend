@@ -2,6 +2,7 @@ package com.ch.schori.locationapp.locationapp.services;
 
 import com.ch.schori.locationapp.locationapp.entities.Location;
 import com.ch.schori.locationapp.locationapp.repos.LocationRepository;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,17 @@ public class LocationServiceImpl implements LocationService {
     }
 
     public Location updateLocationPerLocationId(Long location_id, Location location) {
+
+        Location current_location = locationRepository.getOne(location_id);
+
+        if (location.getImagename().equals("empty")) {
+            location.setImagename(current_location.getImagename());
+        }
+
         location.setId(location_id);
+
+        System.out.println(location);
+
         return locationRepository.save(location);
     }
 

@@ -51,22 +51,28 @@ public class LocationController {
 
     @CrossOrigin
     @PutMapping("/users/{uid}/locations/{id}")
-    public Location updateLocation(@PathVariable("uid") Long user_id, @PathVariable("id") Long location_id, @RequestParam String name, @RequestParam String address, @RequestParam String description, @RequestParam Long fk_user, @RequestParam("file") MultipartFile file) {
-        Date date = new Date();
-        long timeMilli = date.getTime();
-        String filename = timeMilli + "_" + file.getOriginalFilename();
+    public Location updateLocation(@PathVariable("uid") Long user_id, @PathVariable("id") Long location_id, @RequestParam String name, @RequestParam String address, @RequestParam String description, @RequestParam Long fk_user, @RequestParam(value = "file", required = false) MultipartFile file) {
+
         Location location = new Location();
         location.setFk_user(fk_user);
         location.setName(name);
         location.setAddress(address);
         location.setDescription(description);
-        location.setImagename(filename);
-        try {
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + filename);
-            Files.write(path, bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
+        location.setImagename("empty");
+
+        if (file != null) {
+            Date date = new Date();
+            long timeMilli = date.getTime();
+            String filename = timeMilli + "_" + file.getOriginalFilename();
+
+            location.setImagename(filename);
+            try {
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + filename);
+                Files.write(path, bytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return locationService.updateLocationPerLocationId(location_id, location);
     }
