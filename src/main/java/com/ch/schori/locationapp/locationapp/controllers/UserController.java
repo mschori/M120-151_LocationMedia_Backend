@@ -1,6 +1,6 @@
 package com.ch.schori.locationapp.locationapp.controllers;
 
-import com.ch.schori.locationapp.locationapp.entities.Location;
+import com.ch.schori.locationapp.locationapp.entities.LoginForm;
 import com.ch.schori.locationapp.locationapp.entities.User;
 import com.ch.schori.locationapp.locationapp.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +28,6 @@ public class UserController {
     public List<User> getUsers() {
         return userService.getAllUsers();
     }
-
-//    @CrossOrigin
-//    @GetMapping
-//    public List<User> getUsersWithLocationCount() {
-//        return userService.getAllUsersWithLocationCount();
-//    }
 
     @CrossOrigin
     @PostMapping

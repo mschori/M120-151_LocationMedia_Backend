@@ -1,6 +1,6 @@
 package com.ch.schori.locationapp.locationapp.services;
 
-import com.ch.schori.locationapp.locationapp.controllers.LoginForm;
+import com.ch.schori.locationapp.locationapp.entities.LoginForm;
 import com.ch.schori.locationapp.locationapp.entities.User;
 
 import java.util.List;

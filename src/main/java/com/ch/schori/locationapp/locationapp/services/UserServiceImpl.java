@@ -1,6 +1,6 @@
 package com.ch.schori.locationapp.locationapp.services;
 
-import com.ch.schori.locationapp.locationapp.controllers.LoginForm;
+import com.ch.schori.locationapp.locationapp.entities.LoginForm;
 import com.ch.schori.locationapp.locationapp.entities.User;
 import com.ch.schori.locationapp.locationapp.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +23,6 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
-//    public List<User> getAllUsersWithLocationCount() {
-//        return userRepository.getUsersWithLocationCount();
-//    }
 
     public LoginForm login(User user) {
         try {

@@ -1,4 +1,4 @@
-package com.ch.schori.locationapp.locationapp.controllers;
+package com.ch.schori.locationapp.locationapp.entities;
 
 public class LoginForm {
 
